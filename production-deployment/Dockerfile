@@ -3,6 +3,8 @@ FROM python:3.11-slim AS builder
 
 WORKDIR /app
 
+RUN useradd -m appuser
+
 # Install deps
 COPY fastapi-service/requirements.txt .
 RUN pip install --upgrade pip && pip install --no-cache-dir -r requirements.txt
@@ -18,5 +20,7 @@ WORKDIR /app
 # Copy installed packages
 COPY --from=builder /usr/local /usr/local
 COPY --from=builder /app /app
+
+USER appuser
 
 CMD ["python3", "-m", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]

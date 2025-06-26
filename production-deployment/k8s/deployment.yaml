@@ -22,8 +22,8 @@ spec:
         fsGroup: 2000
       containers:
         - name: fastapi-container
-          image: fastapi-app:latest
-          imagePullPolicy: IfNotPresent 
+          image: ochecodes/fastapi-app:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 8000
           envFrom:

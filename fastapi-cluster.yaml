@@ -1,0 +1,14 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: fastapi-cluster
+  region: us-east-1
+  version: "1.29"
+
+nodeGroups:
+  - name: fastapi-nodes
+    instanceType: t3.medium
+    desiredCapacity: 2
+    volumeSize: 20
+
