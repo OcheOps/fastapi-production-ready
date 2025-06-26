@@ -1,0 +1,24 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: default
+  name: fastapi-role
+rules:
+  - apiGroups: [""]
+    resources: ["pods", "services", "configmaps", "secrets"]
+    verbs: ["get", "list", "watch"]
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: fastapi-binding
+  namespace: default
+subjects:
+  - kind: ServiceAccount
+    name: fastapi-sa
+    namespace: default
+roleRef:
+  kind: Role
+  name: fastapi-role
+  apiGroup: rbac.authorization.k8s.io
