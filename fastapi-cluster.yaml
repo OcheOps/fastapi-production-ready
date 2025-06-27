@@ -11,4 +11,3 @@ nodeGroups:
     instanceType: t3.medium
     desiredCapacity: 2
     volumeSize: 20
-
